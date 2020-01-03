@@ -1,44 +1,72 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/signup">Not a member? | Sign up</router-link>
-      <div class="content"></div>
-      <div class="loginbox">
-        <h1>User Login</h1>
-        <form>
-          <!-- <p>Username</p> -->
-          <div class="dx-field">
-            <dx-text-box placeholder="Login" width="100%" :value.sync="login">
-              <dx-validator>
-                <dx-required-rule message="Login is required" />
-              </dx-validator>
-            </dx-text-box>
+  <div>
+    <div class="loginbox">
+      <div class="headerText">
+        <router-link to="/login">
+          <div class="title">
+            <h1 class="text">Login</h1>
           </div>
-          <!-- <p>Password</p> -->
-          <div class="dx-field">
-            <dx-text-box placeholder="Password" width="100%" mode="password" :value.sync="password">
-              <dx-validator>
-                <dx-required-rule message="Password is required" />
-              </dx-validator>
-            </dx-text-box>
-          </div>
+        </router-link>
+      </div>
+      <div id="nav">
+        <DxResponsiveBox :screen-by-width="screen" single-column-screen="xs">
+          <DxRow :ratio="1" screen="xs" />
 
-          <div class="buttons-demo">
-            <div class="buttons">
-              <div class="buttons-column">
-                <div>
-                  <DxButton
-                    :width="120"
-                    text="Login"
-                    type="success"
-                    styling-mode="contained"
-                    @click="onLoginClick"
-                  />
-                </div>
+          <DxRow :ratio="1" screen="sm" />
+
+          <DxCol :ratio="1" />
+          <DxCol :ratio="11" screen="lg" />
+          <DxCol :ratio="1" />
+          <DxRow :ratio="1" />
+          <DxRow :ratio="1" />
+
+          <DxItem>
+            <DxLocation :row="1" :col="1" screen="lg" />
+            <DxLocation :row="1" :col="1" :colspan="0" screen="sm" />
+            <template #default>
+              <div id="app">
+                <form>
+                  <!-- <p>Username</p> -->
+                  <div class="dx-field">
+                    <dx-text-box placeholder="User Name or Email" width="100%">
+                      <dx-validator>
+                        <dx-required-rule message="Username is required" />
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                  <!-- <p>Password</p> -->
+                  <div class="dx-field">
+                    <dx-text-box placeholder="Password" width="100%" mode="password">
+                      <dx-validator>
+                        <dx-required-rule message="Password is required" />
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </form>
               </div>
+            </template>
+          </DxItem>
+        </DxResponsiveBox>
+      </div>
+      <!-- Button -->
+      <div class="buttons-demo dx-field">
+        <div class="buttons">
+          <div class="buttons-column">
+            <div>
+              <DxButton
+                class="buttonText"
+                :width="120"
+                text="LOGIN"
+                type="success"
+                styling-mode="contained"
+                @click="onLoginClick"
+              />
             </div>
           </div>
-        </form>
+        </div>
+      </div>
+      <div class="link">
+        <router-link to="/signup">Not a member? sign up here</router-link>
       </div>
     </div>
   </div>
@@ -77,10 +105,7 @@ import {
     DxRow
   }
 })
-export default class Signup extends Vue {
-  text = "Login ";
-  login: undefined;
-
+export default class Login extends Vue {
   screen(width: any) {
     return width < 700 ? "sm" : "lg";
   }
@@ -97,154 +122,78 @@ export default class Signup extends Vue {
 
 <style  lang="scss" scoped>
 @import "../themes/generated/variables.base.scss";
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: right;
-  color: #2c3e50;
+
+a {
+  color: lightslategray;
+  text-decoration: none;
 }
 
-// responsive
-.demo-container,
-#page {
-  height: 100%;
-  min-height: 300px;
+.text {
+  margin: 11px 0px;
 }
 
-.header {
-  background-color: rgba(243, 158, 108, 0.8);
-  text-align: center;
-}
-
-.content {
-  background-color: rgba(245, 229, 166, 0.8);
-}
-
-.left-side-bar {
-  background-color: rgba(148, 215, 199, 0.8);
-}
-
-.right-side-bar {
-  background-color: rgba(119, 199, 231, 0.8);
-}
-
-.footer {
-  background-color: rgba(123, 155, 207, 0.8);
-}
-
-.item {
-  height: 100%;
-}
-
-#page p {
-  font-size: 20px;
-  padding-top: 10px;
-  text-align: center;
-}
-
-// button
-.demo-container {
-  display: flex;
-  justify-content: center;
-  height: 450px;
-}
-
-.buttons-demo {
-  // width: 600px;
-  align-self: center;
-}
-
-.buttons-column > .column-header {
-  flex-grow: 0;
-  width: 120px;
-  height: 35px;
-  font-size: 130%;
-  opacity: 0.6;
-  text-align: left;
-  padding-left: 15px;
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.buttons > div {
-  width: 270px;
-  flex-wrap: nowrap;
-  display: flex;
-  padding: 17.9% 0 0 0;
-}
-
-.buttons-column > div {
-  width: 150px;
-  height: 50px;
-  text-align: center;
-}
-
-.buttons-column {
-  width: 150px;
-  justify-content: center;
-}
-
-.content {
-  text-align: center;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: lightblue;
-    }
-  }
-}
-
-.login-header {
-  text-align: center;
-  margin-bottom: 40px;
-
-  .title {
-    font-weight: bold;
-    font-size: 30px;
-    margin: 0;
-  }
-}
-
-body {
-  margin: 0;
-  padding: 0;
-
-  background-size: cover;
-  background-position: center;
-  font-family: sans-serif;
+.title {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 100;
 }
 
 .loginbox {
-  width: 320px;
-  height: 320px;
+  width: 450px;
+  height: 250px;
   background: white;
   color: grey;
   top: 50%;
   left: 50%;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   box-sizing: border-box;
-  padding: 70px 30px;
-  border-radius: 10px;
-
-  box-shadow: 0px 5px 24px -6px #6a6a6a;
+  padding: 0px;
+  border-radius: 1px;
+  box-shadow: 0px 5px 2px -20px #6a6a6a;
 }
 
-h1 {
+@media only screen and (max-width: 500px) {
+  .loginbox {
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: grey;
+    top: 70%;
+    box-sizing: border-box;
+    border-radius: 0px;
+  }
+}
+
+@media only screen and (max-width: 150px) {
+  .loginbox {
+    width: 22vh;
+    height: 150vh;
+    background: white;
+    color: grey;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 15px 0 70px 0;
+    border-radius: 0px;
+  }
+}
+
+.headerText {
   margin: 0;
-  padding: 0 0 20px;
+  padding: 0px 0px 0px 35px;
   text-align: center;
-  font-size: 22px;
+  font-size: 12px;
+  display: flex;
+  justify-content: left;
+  font-weight: normal;
+  color: grey;
+  border-bottom: solid;
+  border-width: 0.1px;
+  border-color: rgb(161, 161, 161);
+  background: #afafaf;
+  height: 50px;
 }
 </style>

@@ -1,5 +1,8 @@
+
 let authenticated = true;
-export default {
+module.exports = {
+
+
   authenticated() {
     return authenticated;
   },
@@ -12,5 +15,7 @@ export default {
   signUp() {
     authenticated = true;
   }
-};
+
+}
+
 

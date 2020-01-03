@@ -1,19 +1,15 @@
 <template>
   <div id="app">
-    <resoinsive />
-    <!-- <router-view /> -->
+    <router-view />
     <!-- <img src="Mountains.ai.svg" alt /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Resoinsive from "./components/Resoinsive.vue";
 
 @Component({
-  components: {
-    Resoinsive
-  }
+  components: {}
 })
 export default class App extends Vue {
   click = "asd";
@@ -26,6 +22,12 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss" >
+* {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
+}
 html {
   height: 100%;
   margin: 0%;
@@ -41,49 +43,11 @@ html {
 }
 
 #nav {
-  padding: 30px;
+  padding: 18px 0px;
+}
+a {
+  font-weight: normal;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: lightblue;
-    }
-  }
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 2.5s;
-  }
-
-  .router-anim-enter-active {
-    animation: coming 1s;
-    animation-delay: 0.5s;
-    opacity: 0;
-  }
-  .router-anim-leave-active {
-    animation: going 1s;
-  }
-
-  @keyframes going {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-  }
-  @keyframes coming {
-    from {
-      transform: translateX(-50px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
+  text-decoration: none;
 }
 </style>
